@@ -42,7 +42,7 @@ public class User {
     @Column(name = "role", nullable = false)
     private String role;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clinic_id", referencedColumnName = "id")
     private Clinic clinic;
 

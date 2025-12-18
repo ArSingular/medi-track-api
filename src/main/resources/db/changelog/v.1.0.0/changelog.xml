@@ -14,5 +14,6 @@
     <include file="create-table-suppliers.xml" relativeToChangelogFile="true"/>
     <include file="create-table-batches.xml" relativeToChangelogFile="true"/>
     <include file="create-table-inventory-transactions.xml" relativeToChangelogFile="true"/>
+    <include file="add-column-threshold-to-products.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

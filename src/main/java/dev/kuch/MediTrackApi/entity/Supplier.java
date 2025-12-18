@@ -9,16 +9,15 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
- * @author Korol Artur
- * 18.12.2025
+ * @author Artur Korol
  */
 
 @Entity
-@Table(name = "products")
+@Table(name = "suppliers")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+public class Supplier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -28,16 +27,16 @@ public class Product {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "email")
+    private String email;
 
-    @Column(name = "unit")
-    private  String unit;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
-    @Column(name = "min_quantity_threshold", nullable = false)
-    private Integer minQuantityThreshold;
+    @Column(name = "contact_person")
+    private String contactPerson;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
