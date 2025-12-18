@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-table-batches" author="korol">
+        <createTable tableName="batches">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="sku" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="batch_number" type="varchar(100)"/>
+
+            <column name="current_quantity" type="integer"/>
+
+            <column name="initial_quantity" type="integer"/>
+
+            <column name="purchase_price" type="decimal"/>
+
+            <column name="expiry_date" type="date"/>
+
+            <column name="clinic_id" type="uuid">
+                <constraints nullable="false"
+                             foreignKeyName="fk_batches_clinic"
+                             references="clinics(id)"/>
+            </column>
+
+            <column name="product_id" type="uuid">
+                <constraints nullable="false"
+                             foreignKeyName="fk_batches_product"
+                             references="products(id)"/>
+            </column>
+
+            <column name="supplier_id" type="uuid">
+                <constraints nullable="false"
+                             foreignKeyName="fk_batches_supplier"
+                             references="suppliers(id)"/>
+            </column>
+
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

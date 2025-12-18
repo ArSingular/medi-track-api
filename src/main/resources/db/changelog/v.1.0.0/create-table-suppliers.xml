@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-table-suppliers" author="korol">
+        <createTable tableName="suppliers">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="name" type="varchar(255)"/>
+
+            <column name="email" type="varchar(255)"/>
+
+            <column name="phone_number" type="varchar(255)"/>
+
+            <column name="contact_person" type="varchar(255)"/>
+
+            <column name="clinic_id" type="uuid">
+                <constraints nullable="false"
+                             foreignKeyName="fk_suppliers_clinic"
+                             references="clinics(id)"/>
+            </column>
+
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

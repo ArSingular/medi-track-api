@@ -10,5 +10,9 @@
 
     <include file="create-table-clinics.xml" relativeToChangelogFile="true"/>
     <include file="create-table-users.xml" relativeToChangelogFile="true"/>
+    <include file="create-table-products.xml" relativeToChangelogFile="true"/>
+    <include file="create-table-suppliers.xml" relativeToChangelogFile="true"/>
+    <include file="create-table-batches.xml" relativeToChangelogFile="true"/>
+    <include file="create-table-inventory-transactions.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
