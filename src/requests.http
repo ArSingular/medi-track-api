@@ -1,0 +1,14 @@
+### Створити новий продукт
+POST http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/products
+Content-Type: application/json
+
+{
+  "name": "Лідокаїн",
+  "description": "Знеболююче",
+  "unit": "ампула",
+  "minQuantityThreshold": 50
+}
+
+### Отримати список продуктів
+GET http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/products
+Content-Type: application/json
