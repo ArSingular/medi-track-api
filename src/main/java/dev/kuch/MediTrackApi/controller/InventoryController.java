@@ -1,6 +1,7 @@
 package dev.kuch.MediTrackApi.controller;
 
 import dev.kuch.MediTrackApi.dto.request.RestockRequest;
+import dev.kuch.MediTrackApi.dto.request.UsageRequest;
 import dev.kuch.MediTrackApi.service.BatchService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,16 @@ public class InventoryController {
         batchService.restockProduct(clinicId, userId, restockRequest);
 
         return ResponseEntity.ok("Restock Success");
+    }
+
+    @PostMapping("/usage")
+    public ResponseEntity<String> useProduct(@PathVariable UUID clinicId,
+                                                 @RequestParam UUID userId,
+                                                 @Valid @RequestBody UsageRequest usageRequest) {
+
+        batchService.useProduct(clinicId, userId, usageRequest);
+
+        return ResponseEntity.ok("Product usage success");
     }
 
 }

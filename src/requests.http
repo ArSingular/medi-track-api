@@ -43,11 +43,21 @@ POST http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/inve
 Content-Type: application/json
 
 {
-  "productId": "a2775b12-7dfe-4186-b526-c79eee29462c",
-  "supplierId": "d6cd52b5-48c5-49fe-a47c-3e9c2dfecafa",
-  "quantity": 1,
+  "productId": "3a67eaf7-d4d2-49b6-8b3e-4133eccbbdaf",
+  "supplierId": "c6c43dc1-1f0b-4445-b747-a3ebac1acd0f",
+  "quantity": -99,
   "purchasePrice": 25.50,
   "expiryDate": "2026-12-31",
   "batchNumber": "SERIES-2025-12",
   "sku": "48200111222"
+}
+
+### Зробити списання
+POST http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/inventory/usage?userId=11111111-1111-1111-1111-111111111111
+Content-Type: application/json
+
+{
+  "productId": "3a67eaf7-d4d2-49b6-8b3e-4133eccbbdaf",
+  "quantity": 20,
+  "reason": "Usage test"
 }
