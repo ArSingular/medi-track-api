@@ -33,3 +33,21 @@ Content-Type: application/json
 ### Отримати усіх постачальників
 GET http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/suppliers
 Content-Type: application/json
+
+#####################################################################
+######################## Запити для інвертаризації ########################################################################################
+/
+
+### Зробити ресток
+POST http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/inventory/restock?userId=11111111-1111-1111-1111-111111111111
+Content-Type: application/json
+
+{
+  "productId": "a2775b12-7dfe-4186-b526-c79eee29462c",
+  "supplierId": "d6cd52b5-48c5-49fe-a47c-3e9c2dfecafa",
+  "quantity": 1,
+  "purchasePrice": 25.50,
+  "expiryDate": "2026-12-31",
+  "batchNumber": "SERIES-2025-12",
+  "sku": "48200111222"
+}
