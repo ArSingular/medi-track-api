@@ -66,6 +66,6 @@ Content-Type: application/json
 GET http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/inventory/history
 Content-Type: application/json
 
-### Отримати історію продукту
+### Отримати історію продукту/
 GET http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/inventory/history/3a67eaf7-d4d2-49b6-8b3e-4133eccbbdaf
 Content-Type: application/json
