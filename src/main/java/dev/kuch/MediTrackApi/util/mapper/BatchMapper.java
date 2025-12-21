@@ -21,6 +21,7 @@ public interface BatchMapper {
     @Mapping(target = "supplier", ignore = true)
     @Mapping(target = "currentQuantity", source = "quantity")
     @Mapping(target = "initialQuantity", source = "quantity")
+    @Mapping(target = "batchNumber", source = "batchNumber")
     @Mapping(target = "createdAt", ignore = true)
     Batch toBatch(RestockRequest restockRequest);
 

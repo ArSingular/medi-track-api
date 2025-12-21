@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
  * 19.12.2025
  */
 
-
 @Mapper(componentModel = "spring", nullValueMapMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
 @Component
 public interface SupplierMapper {

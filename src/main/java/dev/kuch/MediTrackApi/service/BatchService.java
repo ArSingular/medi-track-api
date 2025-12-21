@@ -2,11 +2,13 @@ package dev.kuch.MediTrackApi.service;
 
 import dev.kuch.MediTrackApi.dto.request.RestockRequest;
 import dev.kuch.MediTrackApi.dto.request.UsageRequest;
+import dev.kuch.MediTrackApi.dto.response.TransactionResponse;
 import dev.kuch.MediTrackApi.entity.*;
 import dev.kuch.MediTrackApi.repository.*;
 import dev.kuch.MediTrackApi.util.mapper.BatchMapper;
+import dev.kuch.MediTrackApi.util.mapper.TransactionMapper;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,7 @@ public class BatchService {
     private final ClinicRepository clinicRepository;
     private final InventoryTransactionRepository inventoryTransactionRepository;
     private final BatchMapper batchMapper;
+    private final TransactionMapper transactionMapper;
 
     @Transactional
     public void restockProduct(UUID clinicId, UUID userId, RestockRequest restockRequest) {
@@ -110,7 +113,22 @@ public class BatchService {
             inventoryTransactionRepository.save(transaction);
         }
         System.out.println("Usage success");
+    }
 
+    @Transactional(readOnly = true)
+    public List<TransactionResponse> getClinicTransactionHistory(UUID clinicId){
+        return inventoryTransactionRepository.findAllByClinicIdOrderByCreatedAtDesc(clinicId)
+                .stream()
+                .map(transactionMapper::toResponse)
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<TransactionResponse> getProductTransactionHistory(UUID clinicId, UUID productId){
+        return inventoryTransactionRepository.findAllByClinicIdAndProductIdOrderByCreatedAtDesc(clinicId, productId)
+                .stream()
+                .map(transactionMapper::toResponse)
+                .toList();
     }
 
 }
