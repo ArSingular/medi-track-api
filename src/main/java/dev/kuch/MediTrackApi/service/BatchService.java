@@ -4,10 +4,12 @@ import dev.kuch.MediTrackApi.dto.request.RestockRequest;
 import dev.kuch.MediTrackApi.dto.request.UsageRequest;
 import dev.kuch.MediTrackApi.dto.response.TransactionResponse;
 import dev.kuch.MediTrackApi.entity.*;
+import dev.kuch.MediTrackApi.event.LowStockEvent;
 import dev.kuch.MediTrackApi.repository.*;
 import dev.kuch.MediTrackApi.util.mapper.BatchMapper;
 import dev.kuch.MediTrackApi.util.mapper.TransactionMapper;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,7 @@ public class BatchService {
     private final InventoryTransactionRepository inventoryTransactionRepository;
     private final BatchMapper batchMapper;
     private final TransactionMapper transactionMapper;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Transactional
     public void restockProduct(UUID clinicId, UUID userId, RestockRequest restockRequest) {
@@ -112,6 +115,7 @@ public class BatchService {
 
             inventoryTransactionRepository.save(transaction);
         }
+        checkStockAndNotify(clinicId, usageRequest.getProductId());
         System.out.println("Usage success");
     }
 
@@ -129,6 +133,26 @@ public class BatchService {
                 .stream()
                 .map(transactionMapper::toResponse)
                 .toList();
+    }
+
+    private void checkStockAndNotify(UUID clinicId, UUID productId){
+        Integer totalStock = batchRepository.getTotalQuantity(productId, clinicId);
+        int finalStock = (totalStock == null) ? 0 : totalStock;
+
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new EntityNotFoundException("Product not found"));
+        Clinic clinic = clinicRepository.findById(clinicId)
+                .orElseThrow(() -> new EntityNotFoundException("Clinic not found"));
+
+        if(finalStock <= product.getMinQuantityThreshold()){
+            eventPublisher.publishEvent(new LowStockEvent(
+                    clinic.getName(),
+                    clinic.getOwnerEmail(),
+                    product.getName(),
+                    finalStock,
+                    product.getMinQuantityThreshold()
+            ));
+        }
     }
 
 }

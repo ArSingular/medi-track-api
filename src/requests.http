@@ -2,36 +2,36 @@
 ######################## Запити продукти ########################################################################################
 
 ### Створити новий продукт
-POST http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/products
+POST http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111112/products
 Content-Type: application/json
 
 {
-  "name": "Test",
-  "description": "Test",
+  "name": "Лідокаїн",
+  "description": "Знеболююче",
   "unit": "ампула",
   "minQuantityThreshold": 10
 }
 
 ### Отримати список продуктів
-GET http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/products
+GET http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111112/products
 Content-Type: application/json
 
 #####################################################################
 ######################## Запити постачальники ########################################################################################
 /
 ### Створити нового постачальника
-POST http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/suppliers
+POST http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111112/suppliers
 Content-Type: application/json
 
 {
-  "name": "Test1",
-  "email": "sales@test1.ua",
+  "name": "Фармак",
+  "email": "sales@farmak.ua",
   "phone": "+380111111211",
-  "contactPerson": "Менеджер Test1"
+  "contactPerson": "Менеджер Фармак"
 }
 
 ### Отримати усіх постачальників
-GET http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/suppliers
+GET http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111112/suppliers
 Content-Type: application/json
 
 #####################################################################
@@ -39,13 +39,13 @@ Content-Type: application/json
 /
 
 ### Зробити ресток
-POST http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/inventory/restock?userId=11111111-1111-1111-1111-111111111111
+POST http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111112/inventory/restock?userId=11111111-1111-1111-1111-111111111112
 Content-Type: application/json
 
 {
-  "productId": "3a67eaf7-d4d2-49b6-8b3e-4133eccbbdaf",
-  "supplierId": "a6f2bf5f-e9be-4e3b-9ed7-a89e6ea14191",
-  "quantity": 1000,
+  "productId": "4c1bb52d-0aa0-4f28-82b9-25aeb5233a0b",
+  "supplierId": "fefee312-625e-4da6-9532-2c871c87d720",
+  "quantity": 20,
   "purchasePrice": 25.50,
   "expiryDate": "2026-12-31",
   "batchNumber": "SERIES-2025-12",
@@ -53,19 +53,19 @@ Content-Type: application/json
 }
 
 ### Зробити списання
-POST http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/inventory/usage?userId=11111111-1111-1111-1111-111111111111
+POST http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111112/inventory/usage?userId=11111111-1111-1111-1111-111111111112
 Content-Type: application/json
 
 {
-  "productId": "3a67eaf7-d4d2-49b6-8b3e-4133eccbbdaf",
-  "quantity": 20,
+  "productId": "4c1bb52d-0aa0-4f28-82b9-25aeb5233a0b",
+  "quantity": 1,
   "reason": "Usage test"
 }
 
 ### Отримати повну історію
-GET http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/inventory/history
+GET http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111112/inventory/history
 Content-Type: application/json
 
 ### Отримати історію продукту
-GET http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111111/inventory/history/3a67eaf7-d4d2-49b6-8b3e-4133eccbbdaf
+GET http://localhost:8080/api/clinics/11111111-1111-1111-1111-111111111112/inventory/history/4c1bb52d-0aa0-4f28-82b9-25aeb5233a0b
 Content-Type: application/json
