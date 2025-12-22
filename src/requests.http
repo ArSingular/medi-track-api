@@ -46,7 +46,7 @@ Content-Type: application/json
   "productId": "4c1bb52d-0aa0-4f28-82b9-25aeb5233a0b",
   "supplierId": "fefee312-625e-4da6-9532-2c871c87d720",
   "quantity": 20,
-  "purchasePrice": 25.50,
+  "purchasePrice": 30.50,
   "expiryDate": "2026-12-31",
   "batchNumber": "SERIES-2025-12",
   "sku": "48200111222"
