@@ -1,6 +1,7 @@
 package dev.kuch.MediTrackApi.service.notification;
 
 import dev.kuch.MediTrackApi.event.LowStockEvent;
+import dev.kuch.MediTrackApi.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.mail.SimpleMailMessage;
@@ -16,12 +17,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class NotificationService {
+public class NotificationServiceImpl implements NotificationService {
 
     private final JavaMailSender mailSender;
 
     @Async
     @EventListener
+    @Override
     public void handleLowStockEvent(LowStockEvent event){
         sendEmail(event);
     }

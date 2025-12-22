@@ -25,20 +25,18 @@ public class InventoryController {
 
     @PostMapping("/restock")
     public ResponseEntity<String> restockProduct(@PathVariable UUID clinicId,
-                                                 @RequestParam UUID userId,
                                                  @Valid @RequestBody RestockRequest restockRequest) {
 
-        batchService.restockProduct(clinicId, userId, restockRequest);
+        batchService.restockProduct(clinicId, restockRequest);
 
         return ResponseEntity.ok("Restock Success");
     }
 
     @PostMapping("/usage")
     public ResponseEntity<String> useProduct(@PathVariable UUID clinicId,
-                                                 @RequestParam UUID userId,
                                                  @Valid @RequestBody UsageRequest usageRequest) {
 
-        batchService.useProduct(clinicId, userId, usageRequest);
+        batchService.useProduct(clinicId, usageRequest);
 
         return ResponseEntity.ok("Product usage success");
     }
